@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\AppError\UserExceptions;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,6 +17,11 @@ class UserController extends AbstractController
     {
 
         $requestData = json_decode($request->getContent());
+
+        //Validação se os campos obrigatórios estão pendentes
+        if (!isset($requestData->login) or !isset($requestData->password)) {
+            return UserExceptions::UserExceptionsJson("Request Inválida !", 400);
+        }
 
         $user = new User();
         $user->setLogin($requestData->login);
