@@ -8,3 +8,8 @@ create_user:
   path: /users/create
   controller: App\Controller\UserController::create
   methods: POST
+
+login:
+  path: /login
+  controller: App\Controller\LoginController::login
+  methods: POST
