@@ -18,7 +18,7 @@ class User
     #[ORM\Column(length: 100)]
     private ?string $login = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: TransactionTypes::class, orphanRemoval: true)]

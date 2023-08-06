@@ -23,9 +23,11 @@ class UserController extends AbstractController
             return UserExceptions::UserExceptionsJson("Request Inválida !", 400);
         }
 
+        $hash = password_hash($requestData->password, PASSWORD_DEFAULT);
+
         $user = new User();
         $user->setLogin($requestData->login);
-        $user->setPassword($requestData->password);
+        $user->setPassword($hash);
 
         $entityManager->persist($user);
 
